@@ -6,13 +6,13 @@
 /*   By: sasano <shunkotkg0141@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 03:25:36 by sasano            #+#    #+#             */
-/*   Updated: 2025/01/19 04:25:16 by sasano           ###   ########.fr       */
+/*   Updated: 2025/06/11 08:27:18 by sasano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "WrongCat.hpp"
 
-WrongCat::WrongCat(): WrongAnimal("WrongCat")
+WrongCat::WrongCat() : WrongAnimal("WrongCat")
 {
     std::cout << "WrongCat Default constructor called" << std::endl;
 }

@@ -6,7 +6,7 @@
 /*   By: sasano <shunkotkg0141@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 04:15:49 by sasano            #+#    #+#             */
-/*   Updated: 2025/01/19 05:02:42 by sasano           ###   ########.fr       */
+/*   Updated: 2025/06/11 09:43:39 by sasano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ Brain &Brain::operator=(const Brain &copy)
     if (this == &copy)
         return (*this);
     for (int i = 0; i < 100; i++)
-    {
-        if (copy._ideas[i].length() > 0)
-            this->_ideas[i].assign(copy._ideas[i]);
-    }
+        this->_ideas[i] = copy._ideas[i];
     return (*this);
 }
 
@@ -45,7 +42,7 @@ std::string Brain::getIdea(int index) const
 {
     if (index < 0 || index >= 100)
         return ("Invalid index");
-    return (this->_ideas[index]);
+    return (_ideas[index]);
 }
 
 void Brain::setIdea(int index, std::string idea)
@@ -53,7 +50,7 @@ void Brain::setIdea(int index, std::string idea)
     if (index < 0 || index >= 100)
     {
         std::cout << "Invalid index" << std::endl;
-        return ;
+        return;
     }
-    this->_ideas[index] = idea;
+    _ideas[index] = idea;
 }

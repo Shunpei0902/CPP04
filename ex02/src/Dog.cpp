@@ -6,27 +6,22 @@
 /*   By: sasano <shunkotkg0141@gmail.com>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/19 03:17:32 by sasano            #+#    #+#             */
-/*   Updated: 2025/01/19 05:05:14 by sasano           ###   ########.fr       */
+/*   Updated: 2025/06/11 09:58:58 by sasano           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
-Dog::Dog(): Animal("Dog")
+Dog::Dog() : Animal("Dog")
 {
     std::cout << "Dog Default constructor called" << std::endl;
     this->_brain = new Brain();
-    if (!this->_brain)
-    {
-        std::cerr << "Failed to allocate memory for Brain" << std::endl;
-        exit(1);
-    }
 }
 
-Dog::Dog(const Dog &copy)
+Dog::Dog(const Dog &copy) : Animal(copy)
 {
     std::cout << "Dog Copy constructor called" << std::endl;
-    *this = copy;
+    this->_brain = new Brain(*copy._brain);
 }
 
 Dog &Dog::operator=(const Dog &copy)
@@ -35,12 +30,9 @@ Dog &Dog::operator=(const Dog &copy)
     if (this == &copy)
         return (*this);
     this->_type = copy._type;
+    if (this->_brain)
+        delete this->_brain;
     this->_brain = new Brain(*copy._brain);
-    if (!this->_brain)
-    {
-        std::cerr << "Failed to allocate memory for Brain" << std::endl;
-        exit(1);
-    }
     return (*this);
 }
 
@@ -54,10 +46,9 @@ void Dog::makeSound() const
 {
     std::cout << this->getType() << " says Woof Woof" << std::endl;
 }
-
-void Dog::getIdea(int index) const
+std::string Dog::getIdea(int index) const
 {
-    std::cout << "Idea " << index << ": " << this->_brain->getIdea(index) << std::endl;
+    return this->_brain->getIdea(index);
 }
 
 void Dog::setIdea(int index, std::string idea)
